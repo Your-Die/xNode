@@ -369,7 +369,7 @@ namespace XNode
         /// <param name="port">The requested port.</param>
         public virtual object GetValue(NodePort port)
         {
-            Debug.LogWarning("No GetValue(NodePort port) override defined for " + GetType());
+            Debug.LogWarning($"No GetValue(NodePort port) override defined for {port.fieldName} in " + this.GetType());
             return null;
         }
 
