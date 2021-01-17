@@ -25,8 +25,8 @@ namespace XNodeEditor.Internal
 
         private static Dictionary<K, T> editors = new Dictionary<K, T>();
         public NodeEditorWindow window;
-        public K target;
-        public SerializedObject serializedObject;
+        public new K target;
+        public new SerializedObject serializedObject;
 #if ODIN_INSPECTOR
         private PropertyTree _objectTree;
         public PropertyTree objectTree

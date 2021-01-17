@@ -22,7 +22,7 @@ namespace XNodeEditor {
         protected internal static bool inNodeEditor = false;
 #endif
 
-        public virtual void OnHeaderGUI() {
+        public new virtual void OnHeaderGUI() {
             GUILayout.Label(target.name, NodeEditorResources.styles.nodeHeader, GUILayout.Height(30));
         }
 
