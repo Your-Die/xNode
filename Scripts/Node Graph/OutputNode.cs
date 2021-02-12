@@ -4,20 +4,33 @@ using XNode;
 
 namespace Chinchillada.NodeGraph
 {
-    public abstract class OutputNode<T> : Node
+    using System;
+
+    public interface IOutputNode
+    {
+        Type OutputType { get; }
+    }
+
+    public interface IOutputNode<T> : IOutputNode
+    {
+        T GetOutput();
+    }
+    
+    public abstract class OutputNode<T> : Node, IOutputNode<T>
     {
         [SerializeField] [Output] private T output;
 
-        
+
         protected string OutputFieldName => nameof(this.output);
 
         public T Output => this.output;
 
+        public Type OutputType => typeof(T);
 
         public override object GetValue(NodePort port)
         {
             return port.fieldName == this.OutputFieldName
-                ? this.GetOutput() 
+                ? this.GetOutput()
                 : base.GetValue(port);
         }
 

@@ -1,36 +1,48 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using XNode;
 
 namespace Chinchillada.NodeGraph
 {
-    public class OutputGraph<TOutputNode> : XNode.NodeGraph where TOutputNode : Node
+    using Rewired;
+    using XNode;
+
+    [CreateAssetMenu(menuName = "Scrobs/Graphs/Generator Graph")]
+    public class OutputGraph : NodeGraph
     {
-        [SerializeField] private TOutputNode outputNode;
+        [SerializeField] [InlineEditor] private List<IOutputNode> outputs = new List<IOutputNode>();
 
-        protected TOutputNode OutputNode => this.outputNode;
+        private Dictionary<Type, IOutputNode> outputLookup;
 
-        private void OnValidate()
+        private IInitializableNode[] initializableNodes;
+        
+        public bool TryGetOutput<T>(out T value)
         {
-            if (this.OutputNode != null)
-                return;
-
-            var functionNodes = this.nodes.OfType<TOutputNode>();
-            var leafNodes = functionNodes.Where(IsLeaf);
-
-
-            var bestScore = float.MinValue;
-            foreach (var node in leafNodes)
+            Initialize();
+            
+            if (this.outputLookup.TryGetValue(typeof(T), out var node))
             {
-                var score = node.position.x;
-                if (score <= bestScore)
-                    continue;
-                
-                this.outputNode = node;
-                bestScore       = score;
+                var outputNode = (IOutputNode<T>) node;
+                value = outputNode.GetOutput();
+                return true;
             }
 
-            static bool IsLeaf(TOutputNode node) => !node.Outputs.Any(port => port.IsConnected);
+            value = default;
+            return false;
+        }
+
+        private void Initialize()
+        {
+            foreach (var node in this.initializableNodes) 
+                node.Initialize();
+        }
+
+        private void OnEnable()
+        {
+            this.outputLookup       = this.outputs.ToDictionary(output => output.OutputType);
+            this.initializableNodes = this.nodes.OfType<IInitializableNode>().ToArray();
         }
     }
 }
