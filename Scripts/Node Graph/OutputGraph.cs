@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Chinchillada.NodeGraph
 {
-    using Rewired;
     using xNode;
 
     [CreateAssetMenu(menuName = "Scrobs/Graphs/Generator Graph")]
