@@ -2,11 +2,11 @@
 
 namespace XNodeEditor.Internal {
 	public struct RerouteReference {
-		public XNode.NodePort port;
+		public xNode.NodePort port;
 		public int connectionIndex;
 		public int pointIndex;
 
-		public RerouteReference(XNode.NodePort port, int connectionIndex, int pointIndex) {
+		public RerouteReference(xNode.NodePort port, int connectionIndex, int pointIndex) {
 			this.port = port;
 			this.connectionIndex = connectionIndex;
 			this.pointIndex = pointIndex;

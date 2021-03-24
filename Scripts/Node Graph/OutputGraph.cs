@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Chinchillada.NodeGraph
 {
     using Rewired;
-    using XNode;
+    using xNode;
 
     [CreateAssetMenu(menuName = "Scrobs/Graphs/Generator Graph")]
     public class OutputGraph : NodeGraph
@@ -17,11 +17,11 @@ namespace Chinchillada.NodeGraph
         private Dictionary<Type, IOutputNode> outputLookup;
 
         private IInitializableNode[] initializableNodes;
-        
+
         public bool TryGetOutput<T>(out T value)
         {
             Initialize();
-            
+
             if (this.outputLookup.TryGetValue(typeof(T), out var node))
             {
                 var outputNode = (IOutputNode<T>) node;
@@ -35,7 +35,7 @@ namespace Chinchillada.NodeGraph
 
         private void Initialize()
         {
-            foreach (var node in this.initializableNodes) 
+            foreach (var node in this.initializableNodes)
                 node.Initialize();
         }
 

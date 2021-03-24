@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XNode;
+using xNode;
 
-namespace XNode {
+namespace xNode {
 	/// <summary> Lets you instantiate a node graph in the scene. This allows you to reference in-scene objects. </summary>
 	public class SceneGraph : MonoBehaviour {
 		public NodeGraph graph;

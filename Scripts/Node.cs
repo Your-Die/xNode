@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace XNode
+namespace xNode
 {
     /// <summary>
     /// Base class for all nodes

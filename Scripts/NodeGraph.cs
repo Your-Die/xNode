@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace XNode {
+namespace xNode {
     using Sirenix.OdinInspector;
 
     /// <summary> Base class for all node graphs </summary>
@@ -56,7 +56,7 @@ namespace XNode {
         }
 
         /// <summary> Create a new deep copy of this graph </summary>
-        public virtual XNode.NodeGraph Copy() {
+        public virtual NodeGraph Copy() {
             // Instantiate a new nodegraph instance
             NodeGraph graph = Instantiate(this);
             // Instantiate all nodes inside the graph

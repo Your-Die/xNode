@@ -52,8 +52,8 @@ namespace XNodeEditor {
             if (input == null || input.Trim() == "") {
                 if (GUILayout.Button("Revert to default") || (e.isKey && e.keyCode == KeyCode.Return)) {
                     target.name = NodeEditorUtilities.NodeDefaultName(target.GetType());
-                    NodeEditor.GetEditor((XNode.Node)target, NodeEditorWindow.current).OnRename();
-                    AssetDatabase.SetMainObject((target as XNode.Node).graph, AssetDatabase.GetAssetPath(target));
+                    NodeEditor.GetEditor((xNode.Node)target, NodeEditorWindow.current).OnRename();
+                    AssetDatabase.SetMainObject((target as xNode.Node).graph, AssetDatabase.GetAssetPath(target));
                     AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
                     Close();
                     target.TriggerOnValidate();
@@ -63,8 +63,8 @@ namespace XNodeEditor {
             else {
                 if (GUILayout.Button("Apply") || (e.isKey && e.keyCode == KeyCode.Return)) {
                     target.name = input;
-                    NodeEditor.GetEditor((XNode.Node)target, NodeEditorWindow.current).OnRename();
-                    AssetDatabase.SetMainObject((target as XNode.Node).graph, AssetDatabase.GetAssetPath(target));
+                    NodeEditor.GetEditor((xNode.Node)target, NodeEditorWindow.current).OnRename();
+                    AssetDatabase.SetMainObject((target as xNode.Node).graph, AssetDatabase.GetAssetPath(target));
                     AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(target));
                     Close();
                     target.TriggerOnValidate();

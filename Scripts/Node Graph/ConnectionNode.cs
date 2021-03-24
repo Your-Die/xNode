@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using XNode;
 
-namespace Function
+namespace xNode
 {
     using Sirenix.OdinInspector;
 

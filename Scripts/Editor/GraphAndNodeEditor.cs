@@ -8,12 +8,12 @@ using Sirenix.Utilities.Editor;
 
 namespace XNodeEditor {
     /// <summary> Override graph inspector to show an 'Open Graph' button at the top </summary>
-    [CustomEditor(typeof(XNode.NodeGraph), true)]
+    [CustomEditor(typeof(xNode.NodeGraph), true)]
 #if ODIN_INSPECTOR
     public class GlobalGraphEditor : OdinEditor {
         public override void OnInspectorGUI() {
             if (GUILayout.Button("Edit graph", GUILayout.Height(40))) {
-                NodeEditorWindow.Open(serializedObject.targetObject as XNode.NodeGraph);
+                NodeEditorWindow.Open(serializedObject.targetObject as xNode.NodeGraph);
             }
             base.OnInspectorGUI();
         }
@@ -38,13 +38,13 @@ namespace XNodeEditor {
     }
 #endif
 
-    [CustomEditor(typeof(XNode.Node), true)]
+    [CustomEditor(typeof(xNode.Node), true)]
 #if ODIN_INSPECTOR
     public class GlobalNodeEditor : OdinEditor {
         public override void OnInspectorGUI() {
             if (GUILayout.Button("Edit graph", GUILayout.Height(40))) {
                 SerializedProperty graphProp = serializedObject.FindProperty("graph");
-                NodeEditorWindow w = NodeEditorWindow.Open(graphProp.objectReferenceValue as XNode.NodeGraph);
+                NodeEditorWindow w = NodeEditorWindow.Open(graphProp.objectReferenceValue as xNode.NodeGraph);
                 w.Home(); // Focus selected node
             }
             base.OnInspectorGUI();

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Function
+namespace xNode
 {
     using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace Function
     {
         [SerializeField]
         private T source;
-        
+
         public T Source
         {
             get => this.source != null ? this.source : this.Null;

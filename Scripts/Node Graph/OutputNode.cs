@@ -1,6 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
-using XNode;
+using xNode;
 
 namespace Chinchillada.NodeGraph
 {
@@ -15,7 +15,7 @@ namespace Chinchillada.NodeGraph
     {
         T GetOutput();
     }
-    
+
     public abstract class OutputNode<T> : Node, IOutputNode<T>
     {
         [SerializeField] [Output] private T output;
@@ -34,6 +34,7 @@ namespace Chinchillada.NodeGraph
                 : base.GetValue(port);
         }
 
+        [Button]
         public T GetOutput()
         {
             this.output = this.UpdateOutput();
@@ -43,7 +44,6 @@ namespace Chinchillada.NodeGraph
             return this.output;
         }
 
-        [Button]
         protected abstract T UpdateOutput();
 
         protected virtual void UpdatePreview(T value) { }

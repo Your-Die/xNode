@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace XNode {
+namespace xNode {
     /// <summary> Precaches reflection data in editor so we won't have to do it runtime </summary>
     public static class NodeDataCache {
         private static PortDataCache portDataCache;
@@ -155,7 +155,7 @@ namespace XNode {
 
             // GetFields doesnt return inherited private fields, so walk through base types and pick those up
             System.Type tempType = nodeType;
-            while ((tempType = tempType.BaseType) != typeof(XNode.Node)) {
+            while ((tempType = tempType.BaseType) != typeof(Node)) {
                 FieldInfo[] parentFields = tempType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
                 for (int i = 0; i < parentFields.Length; i++) {
                     // Ensure that we do not already have a member with this type and name

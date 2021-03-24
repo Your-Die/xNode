@@ -1,13 +1,13 @@
 ﻿using UnityEditor;
-using XNode;
+using xNode;
 
 namespace XNodeEditor {
     /// <summary>
     /// This asset processor resolves an issue with the new v2 AssetDatabase system present on 2019.3 and later. When
-    /// renaming a <see cref="XNode.NodeGraph"/> asset, it appears that sometimes the v2 AssetDatabase will swap which asset
-    /// is the main asset (present at top level) between the <see cref="XNode.NodeGraph"/> and one of its <see cref="XNode.Node"/>
+    /// renaming a <see cref="xNode.NodeGraph"/> asset, it appears that sometimes the v2 AssetDatabase will swap which asset
+    /// is the main asset (present at top level) between the <see cref="xNode.NodeGraph"/> and one of its <see cref="xNode.Node"/>
     /// sub-assets. As a workaround until Unity fixes this, this asset processor checks all renamed assets and if it
-    /// finds a case where a <see cref="XNode.Node"/> has been made the main asset it will swap it back to being a sub-asset
+    /// finds a case where a <see cref="xNode.Node"/> has been made the main asset it will swap it back to being a sub-asset
     /// and rename the node to the default name for that node type.
     /// </summary>
     internal sealed class GraphRenameFixAssetProcessor : AssetPostprocessor {
