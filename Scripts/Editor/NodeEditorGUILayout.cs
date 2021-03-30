@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -44,7 +42,7 @@ namespace XNodeEditor {
                 List<PropertyAttribute> propertyAttributes = NodeEditorUtilities.GetCachedPropertyAttribs(port.node.GetType(), property.name);
 
                 // If property is an input, display a regular property field and put a port handle on the left side
-                if (port.direction == xNode.NodePort.IO.Input) {
+                if (port.Direction == xNode.NodePort.IO.Input) {
                     // Get data from [Input] attribute
                     xNode.Node.ShowBackingValue showBacking = xNode.Node.ShowBackingValue.Unconnected;
                     xNode.Node.InputAttribute inputAttribute;
@@ -80,7 +78,7 @@ namespace XNodeEditor {
                     if (dynamicPortList) {
                         Type type = GetType(property);
                         xNode.Node.ConnectionType connectionType = inputAttribute != null ? inputAttribute.connectionType : xNode.Node.ConnectionType.Multiple;
-                        DynamicPortList(property.name, type, property.serializedObject, port.direction, connectionType);
+                        DynamicPortList(property.name, type, property.serializedObject, port.Direction, connectionType);
                         return;
                     }
                     switch (showBacking) {
@@ -104,7 +102,7 @@ namespace XNodeEditor {
                     float paddingLeft = NodeEditorResources.styles.inputPort.padding.left;
                     rect.position = rect.position - new Vector2(16 + paddingLeft, -spacePadding);
                     // If property is an output, display a text label and put a port handle on the right side
-                } else if (port.direction == xNode.NodePort.IO.Output) {
+                } else if (port.Direction == xNode.NodePort.IO.Output) {
                     // Get data from [Output] attribute
                     xNode.Node.ShowBackingValue showBacking = xNode.Node.ShowBackingValue.Unconnected;
                     xNode.Node.OutputAttribute outputAttribute;
@@ -140,7 +138,7 @@ namespace XNodeEditor {
                     if (dynamicPortList) {
                         Type type = GetType(property);
                         xNode.Node.ConnectionType connectionType = outputAttribute != null ? outputAttribute.connectionType : xNode.Node.ConnectionType.Multiple;
-                        DynamicPortList(property.name, type, property.serializedObject, port.direction, connectionType);
+                        DynamicPortList(property.name, type, property.serializedObject, port.Direction, connectionType);
                         return;
                     }
                     switch (showBacking) {
@@ -196,7 +194,7 @@ namespace XNodeEditor {
             GUIContent content = label != null ? label : new GUIContent(ObjectNames.NicifyVariableName(port.fieldName));
 
             // If property is an input, display a regular property field and put a port handle on the left side
-            if (port.direction == xNode.NodePort.IO.Input) {
+            if (port.Direction == xNode.NodePort.IO.Input) {
                 // Display a label
                 EditorGUILayout.LabelField(content, options);
 
@@ -205,7 +203,7 @@ namespace XNodeEditor {
                 position = rect.position - new Vector2(16 + paddingLeft, 0);
             }
             // If property is an output, display a text label and put a port handle on the right side
-            else if (port.direction == xNode.NodePort.IO.Output) {
+            else if (port.Direction == xNode.NodePort.IO.Output) {
                 // Display a label
                 EditorGUILayout.LabelField(content, NodeEditorResources.OutputPort, options);
 
@@ -237,12 +235,12 @@ namespace XNodeEditor {
             Rect rect = new Rect();
 
             // If property is an input, display a regular property field and put a port handle on the left side
-            if (port.direction == xNode.NodePort.IO.Input) {
+            if (port.Direction == xNode.NodePort.IO.Input) {
                 rect = GUILayoutUtility.GetLastRect();
                 float paddingLeft = NodeEditorResources.styles.inputPort.padding.left;
                 rect.position = rect.position - new Vector2(16 + paddingLeft, 0);
                 // If property is an output, display a text label and put a port handle on the right side
-            } else if (port.direction == xNode.NodePort.IO.Output) {
+            } else if (port.Direction == xNode.NodePort.IO.Output) {
                 rect = GUILayoutUtility.GetLastRect();
                 rect.width += NodeEditorResources.styles.outputPort.padding.right;
                 rect.position = rect.position + new Vector2(rect.width, 0);
