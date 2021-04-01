@@ -8,7 +8,7 @@ namespace Chinchillada.NodeGraph
 {
     using xNode;
 
-    [CreateAssetMenu(menuName = "Scrobs/Graphs/Generator Graph")]
+    [CreateAssetMenu(menuName = "Scrobs/Graphs/Output Graph")]
     public class OutputGraph : NodeGraph
     {
         [SerializeField] [InlineEditor] private List<IOutputNode> outputs = new List<IOutputNode>();
