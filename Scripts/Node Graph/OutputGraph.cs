@@ -14,8 +14,18 @@ namespace Chinchillada.NodeGraph
         [SerializeField] [InlineEditor] private List<IOutputNode> outputs = new List<IOutputNode>();
 
         private Dictionary<Type, IOutputNode> outputLookup;
+        private IInitializableNode[]          initializableNodes;
 
-        private IInitializableNode[] initializableNodes;
+        public bool TrySetInput<T>(T value)
+        {
+            var node = this.nodes.OfType<InputNode<T>>().FirstOrDefault();
+
+            if (node == null)
+                return false;
+
+            node.Value = value;
+            return true;
+        }
 
         public bool TryGetOutput<T>(out T value)
         {
@@ -66,7 +76,5 @@ namespace Chinchillada.NodeGraph
             this.outputLookup       = this.outputs.ToDictionary(output => output.OutputType);
             this.initializableNodes = this.nodes.OfType<IInitializableNode>().ToArray();
         }
-
-
     }
 }
